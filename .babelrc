@@ -1,0 +1,18 @@
+{
+  "presets": ["react", ["env", {
+    "targets": {
+      "browsers": [
+        "last 2 versions",
+        "not ie <= 11",
+        "not android <= 56"
+      ],
+    },
+    "modules": "commonjs",
+    "useBuiltIns": false
+  }]],
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+  ]
+}
