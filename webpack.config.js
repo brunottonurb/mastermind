@@ -1,9 +1,8 @@
 const path = require('path');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   context: path.join(__dirname, 'src'),
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   devServer: {
     contentBase: './www'
   },
@@ -14,17 +13,13 @@ module.exports = {
     path: path.join(__dirname, 'www'),
     filename: 'bundle.js',
   },
-  plugins: [
-    new BundleAnalyzerPlugin()
-  ],
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          'babel-loader',
-        ],
+        include: [path.join(__dirname, 'src')],
+        exclude: ['node_modules'],
+        use: ['babel-loader'],
       },
       {
         test: /\.css$/,
