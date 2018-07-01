@@ -4,6 +4,7 @@ import ColorField from './ColorField';
 import PrevGuessField from './PrevGuessField';
 import ClueField from './ClueField';
 import SelectionField from './SelectionField';
+import Overlay from './Overlay';
 
 export {
   Board,
@@ -12,4 +13,5 @@ export {
   PrevGuessField,
   ClueField,
   SelectionField,
+  Overlay,
 };

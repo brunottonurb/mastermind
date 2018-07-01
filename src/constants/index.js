@@ -16,3 +16,4 @@ export const COLORS = [
   YELLOW,
   BLUE,
 ];
+export const NEW_GAME = 'NEW_GAME';

@@ -20,11 +20,12 @@ class SelectionField extends Component {
     color: PropTypes.string,
     connectDropTarget: PropTypes.func.isRequired,
     isOver: PropTypes.bool.isRequired,
-    onClear: PropTypes.func.isRequired,
+    onClear: PropTypes.func,
   }
 
   static defaultProps = {
     color: null,
+    onClear: null,
   }
 
   render() {

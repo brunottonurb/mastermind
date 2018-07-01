@@ -3,6 +3,7 @@ import {
   DELETE_COLOR,
   CLEAR_SELECTION,
   SUBMIT_GUESS,
+  NEW_GAME,
 } from '../constants';
 
 export const selectColor = (color, slot) => ({
@@ -22,4 +23,8 @@ export const clearSelection = () => ({
 
 export const submitGuess = () => ({
   type: SUBMIT_GUESS,
+});
+
+export const newGame = () => ({
+  type: NEW_GAME,
 });

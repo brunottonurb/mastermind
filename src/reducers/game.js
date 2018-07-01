@@ -4,6 +4,7 @@ import {
   CLEAR_SELECTION,
   SUBMIT_GUESS,
   COLORS,
+  NEW_GAME,
 } from '../constants';
 
 const startState = {
@@ -12,10 +13,15 @@ const startState = {
   selection: [null, null, null, null],
   prevRounds: [
   ],
+  won: false,
+  lost: false,
 };
 
 const game = (state = startState, action) => {
   switch (action.type) {
+    case NEW_GAME: {
+      return startState;
+    }
     case SELECT_COLOR: {
       // didn't use dragndrop to select
       if (action.slot === undefined) {
@@ -84,7 +90,7 @@ const game = (state = startState, action) => {
         };
       }
       // guess is not correct and remaining tries is 0 -> lost
-      if (rightColorRightSpot !== 4 && (state.remainingTries - 1) >= 0) {
+      if (rightColorRightSpot !== 4 && (state.remainingTries - 1) <= 0) {
         return {
           ...state,
           remainingTries: state.remainingTries - 1,
