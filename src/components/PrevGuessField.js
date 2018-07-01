@@ -18,7 +18,11 @@ const PrevGuessField = (props) => {
 };
 
 PrevGuessField.propTypes = {
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
+};
+
+PrevGuessField.defaultProps = {
+  color: null,
 };
 
 export default PrevGuessField;

@@ -11,30 +11,6 @@ const startState = {
   remainingTries: 10,
   selection: [null, null, null, null],
   prevRounds: [
-    // {
-    //   guess: [
-    //     'black',
-    //     'yellow',
-    //     'green',
-    //     'blue'
-    //   ],
-    //   clues: {
-    //     rightColorRightSpot: 0,
-    //     rightColorWrongSpot: 3
-    //   }
-    // },
-    // {
-    //   guess: [
-    //     'black',
-    //     'red',
-    //     'green',
-    //     'yellow'
-    //   ],
-    //   clues: {
-    //     rightColorRightSpot: 1,
-    //     rightColorWrongSpot: 2
-    //   }
-    // }
   ],
 };
 
@@ -77,14 +53,7 @@ const game = (state = startState, action) => {
       };
     }
     case SUBMIT_GUESS: {
-      // guess is correct
-      if (state.selection.reduce((product, color, index) => color === state.combi[index] * product)) {
-        return {
-          ...state,
-          win: true,
-        };
-      }
-      // guess is wrong you get clue
+      // check correct colors and get clues
       let rightColorWrongSpot = 0;
       let rightColorRightSpot = 0;
       state.selection.forEach((color, index) => (state.combi[index] === color) && rightColorRightSpot++);
@@ -95,6 +64,44 @@ const game = (state = startState, action) => {
         }
       });
       rightColorWrongSpot -= rightColorRightSpot;
+      // guess is correct
+      if (rightColorRightSpot === 4) {
+        return {
+          ...state,
+          remainingTries: state.remainingTries - 1,
+          selection: [null, null, null, null],
+          prevRounds: [
+            {
+              guess: state.selection,
+              clues: {
+                rightColorRightSpot,
+                rightColorWrongSpot,
+              }
+            },
+            ...state.prevRounds,
+          ],
+          won: true,
+        };
+      }
+      // guess is not correct and remaining tries is 0 -> lost
+      if (rightColorRightSpot !== 4 && (state.remainingTries - 1) >= 0) {
+        return {
+          ...state,
+          remainingTries: state.remainingTries - 1,
+          selection: [null, null, null, null],
+          prevRounds: [
+            {
+              guess: state.selection,
+              clues: {
+                rightColorRightSpot,
+                rightColorWrongSpot,
+              }
+            },
+            ...state.prevRounds,
+          ],
+          lost: true,
+        };
+      }
       return {
         ...state,
         remainingTries: state.remainingTries - 1,

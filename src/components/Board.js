@@ -6,7 +6,7 @@ import ClueField from './ClueField';
 const renderClues = (amount, color, className) => {
   const clues = [];
   for (let i = 0; i < amount; i++) {
-    clues.push(<ClueField color={color} className={className} />);
+    clues.push(<ClueField key={`clueField_${className}_${i}`} color={color} className={className} />);
   }
   return clues;
 };
@@ -19,11 +19,11 @@ const Board = (props) => {
     <div className="board">
       {gameOver && 'GAME OVER!'}
       {gameOver && (rightGuess ? 'YOU WIN!' : 'YOU LOSE!')}
-      {prevMoves.map(move => [
-        <div className="prevGuess">
-          {move.guess.map(color => <PrevGuessField color={color} />)}
+      {prevMoves.map((move, index) => [
+        <div className="prevGuess" key={`prevGuess_${index}`}>
+          {move.guess.map((color, otherIndex) => <PrevGuessField color={color} key={`prevGuessField_${index}_${otherIndex}`} />)}
         </div>,
-        <div className="clues">
+        <div className="clues" key={`clues_${index}`}>
           {renderClues(move.clues.rightColorRightSpot, 'white', 'cluesLeft')}
           {renderClues(move.clues.rightColorWrongSpot, 'black', 'cluesRight')}
         </div>

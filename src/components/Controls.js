@@ -9,7 +9,6 @@ const Controls = (props) => {
     selection,
     onSelect,
     onDelete,
-    onClear,
     onSubmit,
   } = props;
   return (
@@ -17,6 +16,7 @@ const Controls = (props) => {
       <div className="selectionPalette">
         {selection.map((color, index) => (
           <SelectionField
+            key={index}
             onClear={() => onDelete(index)}
             onSelect={droppedColor => onSelect(droppedColor, index)}
             color={selection[index]}
@@ -26,8 +26,9 @@ const Controls = (props) => {
         ))}
       </div>
       <div className="colorPalette">
-        {colors.map(color => (
+        {colors.map((color, index) => (
           <ColorField
+            key={index}
             color={color}
             onSelect={() => onSelect(color)}
           />
@@ -45,7 +46,6 @@ Controls.propTypes = {
   selection: PropTypes.array.isRequired,
   onSelect: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onClear: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 
