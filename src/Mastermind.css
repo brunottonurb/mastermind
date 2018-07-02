@@ -26,6 +26,10 @@
   background-color: grey;
 }
 
+.mastermindWrapper {
+  height: 625px;
+}
+
 .colorField {
   border-style: solid;
   border-width: 1px;
@@ -102,12 +106,8 @@
   margin: auto;
 }
 
-.controls {
-  height: 20%;
-}
-
 .board {
-  height: 80%;
+  height: 500px;
 }
 
 .overlay {
@@ -129,7 +129,12 @@
 
 .overlay button {
   margin:0 auto;
-  display:block;
+  display: block;
+}
+
+.submitButton {
+  margin: 0 auto;
+  display: block;
 }
 
 .correct-combi {

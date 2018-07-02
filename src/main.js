@@ -14,9 +14,7 @@ const store = createStore(
 document.addEventListener('DOMContentLoaded', () => {
   render(
     <Provider store={store}>
-      <div>
-        <Mastermind />
-      </div>
+      <Mastermind />
     </Provider>,
     document.getElementById('mount')
   );

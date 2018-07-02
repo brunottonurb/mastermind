@@ -15,17 +15,19 @@ const Board = (props) => {
   const { prevMoves } = props;
   return (
     <div className="board">
-      {prevMoves.map((move, index) => [
-        <div className="prevGuess" key={`prevGuess_${index}`}>
-          {move.guess.map((color, otherIndex) => (
-            <PrevGuessField color={color} key={`prevGuessField_${index}_${otherIndex}`} />
-          ))}
-        </div>,
-        <div className="clues" key={`clues_${index}`}>
-          {renderClues(move.clues.rightColorRightSpot, 'white', 'cluesLeft')}
-          {renderClues(move.clues.rightColorWrongSpot, 'black', 'cluesRight')}
+      {prevMoves.map((move, index) => (
+        <div className="prevMove" key={`prevMove_${index}`}>
+          <div className="prevGuess" key={`prevGuess_${index}`}>
+            {move.guess.map((color, otherIndex) => (
+              <PrevGuessField color={color} key={`prevGuessField_${index}_${otherIndex}`} />
+            ))}
+          </div>
+          <div className="clues" key={`clues_${index}`}>
+            {renderClues(move.clues.rightColorRightSpot, 'white', 'cluesLeft')}
+            {renderClues(move.clues.rightColorWrongSpot, 'black', 'cluesRight')}
+          </div>
         </div>
-    ])}
+    ))}
     </div>
   );
 };

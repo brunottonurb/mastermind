@@ -25,6 +25,9 @@ const Controls = (props) => {
           </SelectionField>
         ))}
       </div>
+      <button className="submitButton" onClick={onSubmit}>
+        Submit guess
+      </button>
       <div className="colorPalette">
         {colors.map((color, index) => (
           <ColorField
@@ -34,9 +37,6 @@ const Controls = (props) => {
           />
         ))}
       </div>
-      <button onClick={onSubmit}>
-        Submit guess
-      </button>
     </div>
   );
 };
