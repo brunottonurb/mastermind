@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   context: path.join(__dirname, 'src'),
-  devtool: 'eval-source-map',
+  devtool: process.env.NODE_ENV === 'development' && 'eval-source-map',
   devServer: {
     contentBase: './www'
   },
@@ -29,10 +29,5 @@ module.exports = {
         ]
       }
     ]
-  },
-  resolve: {
-    modules: [
-      path.join(__dirname, 'node_modules'),
-    ],
   },
 };
