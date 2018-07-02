@@ -6,7 +6,7 @@ import {
   BoardContainer,
   ControlsContainer
 } from './containers';
-import './Mastermind.css';
+import './Mastermind.scss';
 
 class Mastermind extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {
