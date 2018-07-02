@@ -11,10 +11,6 @@ const colorTarget = {
   }
 };
 
-@DropTarget('COLOR', colorTarget, (connect, monitor) => ({
-  connectDropTarget: connect.dropTarget(),
-  isOver: monitor.isOver(),
-}))
 class SelectionField extends Component {
   static propTypes = {
     color: PropTypes.string,
@@ -51,4 +47,7 @@ class SelectionField extends Component {
   }
 }
 
-export default SelectionField;
+export default DropTarget('COLOR', colorTarget, (connect, monitor) => ({
+  connectDropTarget: connect.dropTarget(),
+  isOver: monitor.isOver(),
+}))(SelectionField);

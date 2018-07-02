@@ -8,15 +8,16 @@ import {
 } from './containers';
 import './Mastermind.css';
 
-@DragDropContext(HTML5Backend)
-export default class Mastermind extends Component {
+class Mastermind extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <React.Fragment>
+      <div className="mastermindWrapper">
         <OverlayContainer />
         <BoardContainer />
         <ControlsContainer />
-      </React.Fragment>
+      </div>
     );
   }
 }
+
+export default DragDropContext(HTML5Backend)(Mastermind);

@@ -11,10 +11,6 @@ const colorSource = {
   }
 };
 
-@DragSource('COLOR', colorSource, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
-}))
 class ColorField extends Component {
   static propTypes = {
     color: PropTypes.string.isRequired,
@@ -46,4 +42,7 @@ class ColorField extends Component {
   }
 }
 
-export default ColorField;
+export default DragSource('COLOR', colorSource, (connect, monitor) => ({
+  connectDragSource: connect.dragSource(),
+  isDragging: monitor.isDragging()
+}))(ColorField);
