@@ -11,6 +11,7 @@ const OverlayContainer = (props) => {
     combi,
     remainingTries,
     startNew,
+    showInstructions,
   } = props;
 
   return (
@@ -20,23 +21,33 @@ const OverlayContainer = (props) => {
       combi={combi}
       remainingTries={remainingTries}
       startNew={startNew}
+      showInstructions={showInstructions}
     />
   );
 };
 
 OverlayContainer.propTypes = {
-  won: PropTypes.bool.isRequired,
-  lost: PropTypes.bool.isRequired,
-  combi: PropTypes.array.isRequired,
-  remainingTries: PropTypes.number.isRequired,
+  won: PropTypes.bool,
+  lost: PropTypes.bool,
+  combi: PropTypes.array,
+  remainingTries: PropTypes.number,
   startNew: PropTypes.func.isRequired,
+  showInstructions: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => ({
-  won: state.game.won,
-  lost: state.game.lost,
-  combi: state.game.combi,
-  remainingTries: state.game.remainingTries,
+OverlayContainer.defaultProps = {
+  won: false,
+  lost: false,
+  combi: null,
+  remainingTries: null,
+};
+
+const mapStateToProps = ({ game }) => ({
+  won: game.won,
+  lost: game.lost,
+  combi: game.combi,
+  remainingTries: game.remainingTries,
+  showInstructions: game.showInstructions,
 });
 
 const mapDispatchToProps = dispatch => ({

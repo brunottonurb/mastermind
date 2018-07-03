@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SelectionField from './SelectionField';
+import ClueField from './ClueField';
 
 const Overlay = (props) => {
   const {
@@ -9,6 +10,7 @@ const Overlay = (props) => {
     combi,
     remainingTries,
     startNew,
+    showInstructions,
   } = props;
 
   const wonMessage = n => (
@@ -30,10 +32,26 @@ const Overlay = (props) => {
     </div>
   );
 
-  if (!won && !lost) return null;
+  const instructions = () => (
+    <div className="instructions">
+      <h1>Mastermind</h1>
+      <h2>Instructions</h2>
+      <div className="instructions-text">
+        Try to <strong>guess the 4-color combination</strong>. You have <strong>10 tries</strong>.<br />
+        For every false guess, you get hints.<br />
+        For every color at the <strong>correct slot</strong>, you are shown a {<ClueField color="white" />}.
+        For every correct color that sits at the <strong>wrong slot</strong>, you get a {<ClueField color="black" />}.<br />
+        You can select colors by clicking them, or dragging them to the appropriate slot (does not work with touch).
+        Deselect a color by clicking it in the selection slot.
+      </div>
+    </div>
+  );
+
+  if (!(showInstructions || lost || won)) return null;
 
   return (
     <div className="overlay">
+      {showInstructions && instructions()}
       {won && wonMessage(remainingTries)}
       {lost && lostMessage(combi)}
       <button onClick={startNew}>New Game</button>
@@ -44,9 +62,15 @@ const Overlay = (props) => {
 Overlay.propTypes = {
   won: PropTypes.bool.isRequired,
   lost: PropTypes.bool.isRequired,
-  combi: PropTypes.array.isRequired,
-  remainingTries: PropTypes.number.isRequired,
+  combi: PropTypes.array,
+  remainingTries: PropTypes.number,
   startNew: PropTypes.func.isRequired,
+  showInstructions: PropTypes.bool.isRequired,
+};
+
+Overlay.defaultProps = {
+  combi: null,
+  remainingTries: null,
 };
 
 export default Overlay;

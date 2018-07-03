@@ -32,11 +32,15 @@ const ControlsContainer = (props) => {
 };
 
 ControlsContainer.propTypes = {
-  selection: PropTypes.array.isRequired,
+  selection: PropTypes.array,
   onSelect: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onClear: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+};
+
+ControlsContainer.defaultProps = {
+  selection: [null, null, null, null],
 };
 
 const mapStateToProps = state => ({

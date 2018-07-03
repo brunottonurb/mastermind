@@ -8,6 +8,17 @@ import {
 } from '../constants';
 
 const startState = {
+  // combi: [0, 1, 2, 3].map(() => COLORS[Math.floor(Math.random() * COLORS.length)]),
+  // remainingTries: 10,
+  // selection: [null, null, null, null],
+  // prevRounds: [
+  // ],
+  // won: false,
+  // lost: false,
+  showInstructions: true,
+};
+
+const newGame = {
   combi: [0, 1, 2, 3].map(() => COLORS[Math.floor(Math.random() * COLORS.length)]),
   remainingTries: 10,
   selection: [null, null, null, null],
@@ -15,12 +26,13 @@ const startState = {
   ],
   won: false,
   lost: false,
+  showInstructions: false,
 };
 
 const game = (state = startState, action) => {
   switch (action.type) {
     case NEW_GAME: {
-      return startState;
+      return newGame;
     }
     case SELECT_COLOR: {
       // didn't use dragndrop to select

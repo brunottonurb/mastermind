@@ -16,7 +16,11 @@ const BoardContainer = (props) => {
 };
 
 BoardContainer.propTypes = {
-  prevMoves: PropTypes.array.isRequired,
+  prevMoves: PropTypes.array,
+};
+
+BoardContainer.defaultProps = {
+  prevMoves: [],
 };
 
 const mapStateToProps = state => ({
